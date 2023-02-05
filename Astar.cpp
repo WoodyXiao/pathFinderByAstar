@@ -3,8 +3,8 @@
 using namespace std;
 
 // Define map rows and columns
-#define ROWS 10
-#define COLS 10
+#define ROWS 20
+#define COLS 20
 
 // Go straight price and Move diagonally price
 #define STRAIGHT_PRICE 10
@@ -58,17 +58,26 @@ int getH(MyPoint point, MyPoint endPoint);
 int main()
 {
     int map[ROWS][COLS] = {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 2, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 2, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    };
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1},
+        {1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1},
+        {1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+        {1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1},
+        {1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1},
+        {1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1},
+        {1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
     // for tracking all points if is walked or not.
     bool pathMap[ROWS][COLS] = {0};
@@ -77,7 +86,7 @@ int main()
     printMap(map);
 
     MyPoint startPoint = {1, 1}; // (1, 1)
-    MyPoint endPoint = {6, 8};   // (6, 8)
+    MyPoint endPoint = {18, 18}; // (18, 18)
 
     // Store the starting point to the tree.
     treeNode *pRoot = NULL;
@@ -213,10 +222,9 @@ int main()
         while (current->pointParent)
         {
             printf("(%d, %d)", current->pos.xPos, current->pos.yPos);
+            map[current->pos.yPos][current->pos.xPos] = 2;
             current = current->pointParent;
-            map[current->pos.yPos][current->pos.xPos] = 3;
         }
-        map[current->pos.yPos][current->pos.xPos] = 2;
         printf("\n");
     }
 
@@ -253,8 +261,6 @@ void printMap(int map[ROWS][COLS])
             else if (map[i][j] == 1)
                 printf("⬛");
             else if (map[i][j] == 2)
-                printf("🟧");
-            else if (map[i][j] == 3)
                 printf("🟥");
         }
         printf("\n");
