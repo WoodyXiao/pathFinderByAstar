@@ -2,7 +2,8 @@
 **Description:**</br>
 This is a small project for learning the A* algorithm and practicing the basic usage of C++, This project will find the shortest path bewteen two given points with A* algorithm in C++.  </br>
 
-**Some notes about the algorithm**</br>
+**Some notes about the algorithm**
+>
 > **Formula:** f = g + h + w 
 >
 > 1. f: The total price for reaching the destination. 
