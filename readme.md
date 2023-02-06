@@ -1,6 +1,6 @@
 ## A* algorithmn to find the shortest path</br>
 **Description:**</br>
-This is a small project for learning the A* algorithm and practicing the basic usage of C++, This project will find the shortest path bewteen two given points with A* algorithm in C++.  </br>
+This is a small project for learning the A* algorithm and practicing the basic usage of C++ purpose, it will find the shortest path bewteen two given points with A* algorithm in C++.  </br>
 
 **Some notes about the algorithm**
 >
